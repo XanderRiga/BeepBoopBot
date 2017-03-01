@@ -29,7 +29,7 @@ class CustomCommands:
             return
         if not server.id in self.c_commands:
             self.c_commands[server.id] = {}
-        cmdlist = self.c_commands[server.id]
+            cmdlist = self.c_commands[server.id]
         if command not in cmdlist:
             cmdlist[command] = text
             self.c_commands[server.id] = cmdlist
