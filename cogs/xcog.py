@@ -1,5 +1,8 @@
 import discord
 from discord.ext import commands
+import urllib
+from .utils.dataIO import dataIO
+from urllib.request import urlopen
 
 try: # check if BeautifulSoup4 is installed
 	from bs4 import BeautifulSoup
@@ -13,12 +16,24 @@ class Mycog:
 
     def __init__(self, bot):
         self.bot = bot
+        self.countComs = dataIO.load_json("data/countcoms/countcoms.json")
 
     @commands.command()
     async def xander(self):
 
         #Prints all Xander face emojis in a line
         await self.bot.say("<:xhearteyes:283866074980810752> <:xandercool:235634201678839809> <:xandertilted:235633458779521024> <:xander:235610087190822913> <:hueh:235633477179932672> <:LUL:235611940590845952> <:xhearteyes:283866074980810752>")
+
+
+    @commands.command()
+    async def wiff(self):
+
+        wiffnum = int(self.countComs["wiff"])
+        wiffnum = wiffnum+1
+        self.countComs["wiff"] = str(wiffnum)
+        dataIO.save_json("data/countcoms/countcoms.json", self.countComs)
+        await self.bot.say("We have collectively whiffed " + str(wiffnum) + " times")
+
 
     @commands.command(pass_context=True)
     async def echo(self, ctx, message):
@@ -40,6 +55,34 @@ class Mycog:
             await self.bot.say(online + ' players are playing Rocket League at the moment')
         except:
            await self.bot.say("Couldn't load amount of players. No one is playing this game anymore or there's an error.")
+
+
+    #@commands.command()
+    #async def hours(self, user):
+        #"""Returns hours played by a user"""
+
+        #link = user
+        #substringCheck = "https://steamcommunity.com/profiles/"
+        #substringCheck2 = "https://steamcommunity.com/id/"
+        #if substringCheck in link:
+        #    url = link + "/games/?tab=all"  # build the web address
+        #if substringCheck2 in link:
+        #    url = link + "/games/?tab=all"  # build the web address
+        #else:
+        #    url = substringCheck2 + link + "/games/?tab=all"
+
+        #url = "http://steamcommunity.com/id/xanderdagr8/games/?tab=all"
+
+        #await self.bot.say(url)
+        #async with aiohttp.get(url) as response:
+            #soup = BeautifulSoup(await response.text(), "html.parser")
+            #await self.bot.say(soup.renderContents())
+        #try:
+            #name_box = soup.find('h5').get_text()
+            #await self.bot.say(name_box)
+        #except:
+           #await self.bot.say("This user does not own Rocket League")
+
 
 
 def setup(bot):
