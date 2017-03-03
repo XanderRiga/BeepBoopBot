@@ -113,7 +113,7 @@ class steam:
 
 		if is_admin:
 			for discordID in self.steamList:
-				self.updateBTS(self, discordID)
+				self.updateBTS(discordID)
 
 	#What happens behind the scenes
 	async def updateBTS(self, discordID):
