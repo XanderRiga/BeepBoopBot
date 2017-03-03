@@ -25,16 +25,16 @@ class steam:
 		self.steamList = dataIO.load_json("data/steam/steam.json")
 		self.rankList = dataIO.load_json("data/rank/rank.json")
 		self.server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
+		self.admin_role = settings.get_server_admin(self.server)
+		self.mod_role = settings.get_server_mod(self.server)
 
 	@commands.command(pass_context=True)
 	async def relinksteam(self, ctx, reguser : discord.Member, steamID):
 		"""Use this to link a usser's Steam ID to their Discord"""
 		author = ctx.message.author
 		
-		admin_role = settings.get_server_admin(self.server)
-		mod_role = settings.get_server_mod(self.server)
-		is_admin = discord.utils.get(author.roles, name=admin_role) is not None
-		is_mod = discord.utils.get(author.roles, name=mod_role) is not None
+		is_admin = discord.utils.get(author.roles, name=self.admin_role) is not None
+		is_mod = discord.utils.get(author.roles, name=self.mod_role) is not None
 		
 		if is_admin or is_mod:
 			i = 0 #User is a mod or Admin and can use this command
@@ -79,22 +79,6 @@ class steam:
 			dataIO.save_json("data/steam/steam.json", self.steamList)
 			await self.bot.say("Success! Your steam ID is now linked to your Discord ID.")
 
-	
-
-    #admin command to update all
-	@commands.command(pass_context=True)
-	async def updateall(self, ctx, user):
-		is_admin = discord.utils.get(user.roles, name=admin_role) is not None
-		is_mod = discord.utils.get(user.roles, name=mod_role) is not None
-
-		if is_admin or is_mod:
-			for discordID in steamList:
-				updateBTS(self, discordID)
-
-
-
-
-
 	#command for user to update their own mmr
 	@commands.command(pass_context=True)
 	async def update(self, ctx):
@@ -124,8 +108,8 @@ class steam:
 	#admin command to update all
 	@commands.command(pass_context=True)
 	async def updateall(self, ctx):
-		is_admin = discord.utils.get(ctx.message.author.roles, name=admin_role) is not None
-
+		is_admin = discord.utils.get(author.roles, name=self.admin_role) is not None
+		
 		if is_admin:
 			for discordID in steamList:
 				updateBTS(self, discordID)
