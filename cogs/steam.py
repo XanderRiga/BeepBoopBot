@@ -111,9 +111,14 @@ class steam:
 		author = ctx.message.author
 		is_admin = discord.utils.get(author.roles, name=self.admin_role) is not None
 
+		i = 0;
+
 		if is_admin:
 			for discordID in self.steamList:
 				self.updateBTS(discordID)
+				i++
+
+		await self.bot.say("Success: " + str(i) " profile(s) updated")
 
 	#What happens behind the scenes
 	async def updateBTS(self, discordID):
