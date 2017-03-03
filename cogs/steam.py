@@ -146,7 +146,7 @@ class steam:
 		if (highestRank == 11):
 			return "All Star"
 		if (highestRank == 12):
-			return "SuperStar"
+			return "Super Star"
 		if (highestRank == 13):
 			return "Champion"
 		if (highestRank == 14):
