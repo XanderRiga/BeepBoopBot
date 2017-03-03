@@ -8,6 +8,7 @@ from .utils.dataIO import dataIO
 from urllib.request import urlopen
 import re
 import discord.utils
+from __main__ import send_cmd_help, settings
 
 try: # check if BeautifulSoup4 is installed
 	from bs4 import BeautifulSoup
@@ -23,10 +24,43 @@ class steam:
 		self.bot = bot
 		self.steamList = dataIO.load_json("data/steam/steam.json")
 		self.rankList = dataIO.load_json("data/rank/rank.json")
+		self.server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
+
+	@commands.command(pass_context=True)
+	async def relinksteam(self, ctx, reguser : discord.Member, steamID):
+		"""Use this to link a usser's Steam ID to their Discord"""
+		author = ctx.message.author
+		
+		admin_role = settings.get_server_admin(self.server)
+		mod_role = settings.get_server_mod(self.server)
+		is_admin = discord.utils.get(author.roles, name=admin_role) is not None
+		is_mod = discord.utils.get(author.roles, name=mod_role) is not None
+		
+		if is_admin or is_mod:
+			i = 0 #User is a mod or Admin and can use this command
+		else:
+			await self.bot.say("You do not have permissions to do this. Please contact a Moderator or Director")
+			return #exits as they should not be allowed to use this
+
+		triggerSubtextOne = "/id/" #this is the string directly before the id in the url
+		triggerSubtextTwo = "/profiles/" #this is the string directly before the id in the url
+		discordID = reguser.id
+		data = {}
+
+		if "http://steamcommunity.com/id" in steamID :
+			steamID = steamID[steamID.find(triggerSubtextOne)+len(triggerSubtextOne):]
+
+		if "http://steamcommunity.com/profiles/" in steamID :
+			steamID = steamID[steamID.find(triggerSubtextTwo)+len(triggerSubtextTwo):]
+
+		self.steamList[discordID] = steamID
+		dataIO.save_json("data/steam/steam.json", self.steamList)
+		await self.bot.say("Success! Your steam ID is now linked to your Discord ID.")
+
 
 	@commands.command(pass_context=True)
 	async def linksteam(self, ctx, steamID):
-		"""Use this to link your Steam ID to your Discord"""
+		"""Use this to link others Steam IDs to their Discord"""
 		triggerSubtextOne = "/id/" #this is the string directly before the id in the url
 		triggerSubtextTwo = "/profiles/" #this is the string directly before the id in the url
 		discordID = ctx.message.author.id
@@ -45,6 +79,8 @@ class steam:
 			dataIO.save_json("data/steam/steam.json", self.steamList)
 			await self.bot.say("Success! Your steam ID is now linked to your Discord ID.")
 
+	
+
     #admin command to update all
 	@commands.command(pass_context=True)
 	async def updateall(self, ctx, user):
@@ -54,6 +90,10 @@ class steam:
 		if is_admin or is_mod:
 			for discordID in steamList:
 				updateBTS(self, discordID)
+
+
+
+
 
 	#command for user to update their own mmr
 	@commands.command(pass_context=True)
