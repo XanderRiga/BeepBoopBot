@@ -6,6 +6,8 @@ import aiohttp
 import urllib
 from .utils.dataIO import dataIO
 from urllib.request import urlopen
+import re
+import discord.utils
 
 try: # check if BeautifulSoup4 is installed
 	from bs4 import BeautifulSoup
@@ -20,6 +22,7 @@ class steam:
 	def __init__(self, bot):
 		self.bot = bot
 		self.steamList = dataIO.load_json("data/steam/steam.json")
+		self.rankList = dataIO.load_json("data/rank/rank.json")
 
 	@commands.command(pass_context=True)
 	async def linksteam(self, ctx, steamID):
@@ -50,35 +53,103 @@ class steam:
 
 		if is_admin or is_mod:
 			for discordID in steamList:
-				updateBTS(self, discordID) 
+				updateBTS(self, discordID)
 
 	#command for user to update their own mmr
 	@commands.command(pass_context=True)
 	async def update(self, ctx):
+		author = ctx.message.author
 		discordID = ctx.message.author.id
-		self.bot.say( "here!")
 		rank = await self.updateBTS(discordID)
-		self.bot.say( "output: " + rank )
+
+		self.rankList[discordID] = rank
+		dataIO.save_json("data/rank/rank.json", self.rankList)
+
+		#id on next line needs to be replaced with server id
+		server = discord.utils.find(lambda m: m.id=='286557202523750411', self.bot.servers)
+		#await self.bot.say(author.top_role.name + ': ' + rank)
+		role = [discord.utils.find(lambda m: m.name == rank, server.roles)]
+		for x in role:
+			await self.bot.say(x.name)
+		self.bot.add_roles(author, role)
+		await self.bot.say( "Your updated rank is: " + rank )
+
 
 	#What happens behind the scenes
 	async def updateBTS(self, discordID):
 		url = "https://rocketleague.tracker.network/profile/steam/" + self.steamList[discordID]
 		#from xcog:
 		#await self.bot.say(url)
+		picArr = []
+		rankArr = []
+		highestRank = 0
+
 		async with aiohttp.get(url) as response:
-			soupObject = BeautifulSoup(await response.text(), "html.parser")
+			soup = BeautifulSoup(await response.text(), "html.parser")
 		try:
-			#beg = 
-			standard = soupObject.find(class_='table.table-striped').find('tbody').find('tr').find('td').find('img').get_text()
-			#solo     = soupObject.find(class_='home-stats').find('li').find('strong').get_text()
-			#doubles  = soupObject.find(class_='home-stats').find('li').find('strong').get_text()
-			#duel     = soupObject.find(class_='home-stats').find('li').find('strong').get_text()
-			await self.bot.say(standard)
-			return standard
+			#await self.bot.say(url)
+			#await self.bot.say(len(soup.contents))
+			for tag in soup.contents[3].body.find(class_='container content-container').find(class_='trn-container stats-container').find(class_='table table-striped').find_all('img'):
+				#temp = ''.join(tag.get_text().split())
+				temp2 = (tag.get('src'))
+				#await self.bot.say(temp2)
+				picArr.append(temp2)
+
+			#await self.bot.say(picArr)
+			
+			for x in picArr:
+				rankArr.append(re.findall("\d+", x))
+
+			index = 0
+			for x in rankArr:
+				for y in x:
+					rankArr[index] = int(y)
+					index += 1
+
+			#await self.bot.say(rankArr)
+			highestRank = max(rankArr)
+			#await self.bot.say(highestRank)
+
 		except:
 			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
 
-		return "0"
+
+		if (highestRank == 0):
+			return "Unranked"
+		if (highestRank == 1):
+			return "Prospect 1"
+		if (highestRank == 2):
+			return "Prospect 2"
+		if (highestRank == 3):
+			return "Prospect 3"
+		if (highestRank == 4):
+			return "Prospect Elite"
+		if (highestRank == 5):
+			return "Challenger 1"
+		if (highestRank == 6):
+			return "Challenger 2"
+		if (highestRank == 7):
+			return "Challenger 3"
+		if (highestRank == 8):
+			return "Challenger Elite"
+		if (highestRank == 9):
+			return "Rising Star"
+		if (highestRank == 10):
+			return "Shooting Star"
+		if (highestRank == 11):
+			return "All Star"
+		if (highestRank == 12):
+			return "SuperStar"
+		if (highestRank == 13):
+			return "Champion"
+		if (highestRank == 14):
+			return "Super Champion"
+		if (highestRank == 15):
+			return "Grand Champion"	
+		else:
+			return "0"
+		
+		
 
 
 
