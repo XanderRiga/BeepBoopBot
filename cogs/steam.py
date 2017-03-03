@@ -71,12 +71,12 @@ class steam:
 		dataIO.save_json("data/rank/rank.json", self.rankList)
 
 		#id on next line needs to be replaced with server id
-		server = discord.utils.find(lambda m: m.id=='286557202523750411', self.bot.servers)
+		server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
 		#await self.bot.say(author.top_role.name + ': ' + rank)
-		role = [discord.utils.find(lambda m: m.name == rank, server.roles)]
-		#role = [discord.Object(id='287044463400976384')]
-		for x in role:
-			await self.bot.say(x.name + ": " + x.id)
+		role = discord.utils.find(lambda m: m.name == rank, server.roles)
+		#role = discord.Object(id='287044463400976384')
+		#for x in role:
+			#await self.bot.say(x.name + ": " + x.id)
 		
 		await self.bot.add_roles(author, role)
 		await self.bot.say("Congrats! Your updated rank is: " + rank )
