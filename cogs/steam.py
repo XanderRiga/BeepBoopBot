@@ -108,7 +108,6 @@ class steam:
 	#admin command to update all
 	@commands.command(pass_context=True)
 	async def updateall(self, ctx):
-		await self.bot.say("here!")
 		author = ctx.message.author
 		is_admin = discord.utils.get(author.roles, name=self.admin_role) is not None
 
@@ -117,7 +116,7 @@ class steam:
 		if is_admin:
 			for discordID in self.steamList:
 				self.updateBTS(discordID)
-				i++
+				i+=1;
 
 		await self.bot.say("Success: " + str(i) " profile(s) updated")
 
