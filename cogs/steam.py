@@ -118,7 +118,7 @@ class steam:
 				self.updateBTS(discordID)
 				i+=1;
 
-		await self.bot.say("Success: " + str(i) " profile(s) updated")
+		await self.bot.say("Success: " + str(i) + " profile(s) updated")
 
 	#What happens behind the scenes
 	async def updateBTS(self, discordID):
