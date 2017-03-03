@@ -112,7 +112,7 @@ class steam:
 		is_admin = discord.utils.get(author.roles, name=self.admin_role) is not None
 
 		if is_admin:
-			for discordID in steamList:
+			for discordID in self.steamList:
 				updateBTS(self, discordID)
 
 	#What happens behind the scenes
