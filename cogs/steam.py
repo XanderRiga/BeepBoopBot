@@ -122,13 +122,13 @@ class steam:
 		await self.bot.say("Congrats! Your updated rank is: " + rank )
 
 	#admin command to update all
-    @commands.command(pass_context=True)
-    async def updateall(self, ctx):
-        is_admin = discord.utils.get(ctx.message.author.roles, name=admin_role) is not None
+	@commands.command(pass_context=True)
+	async def updateall(self, ctx):
+		is_admin = discord.utils.get(ctx.message.author.roles, name=admin_role) is not None
 
-        if is_admin:
-            for discordID in steamList:
-                updateBTS(self, discordID)
+		if is_admin:
+			for discordID in steamList:
+				updateBTS(self, discordID)
 
 	#What happens behind the scenes
 	async def updateBTS(self, discordID):
