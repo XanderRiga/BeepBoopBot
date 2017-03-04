@@ -9,7 +9,7 @@ class tourney:
 		self.bot = bot
 		self.APIkey = "CgfNVgAJM8x8IMr8dEKcKBPxEilyLKR87sGYaCD5"; #from challonge
 		challonge.set_credentials("Dunkas", self.APIkey)
-		await self.bot.say("here")
+		self.bot.say("here")
 
 	#create the tourney
 	@commands.command(pass_context=True)
