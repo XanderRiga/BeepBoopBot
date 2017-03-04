@@ -20,10 +20,12 @@ class tourney:
 	#allow people to enter the tourney
 	@commands.command(pass_context=True)
 	async def jointourney(self):
+		await self.bot.say("method not defined")
 
 	#create a bracket and begin the tourney
 	@commands.command(pass_context=True)
 	async def starttourney(self):
+		await self.bot.say("method not defined")
 
 
 
