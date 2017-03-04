@@ -27,8 +27,12 @@ class Mycog:
 
     @commands.command()
     async def wiff(self):
+        w = "wiff"
 
-        wiffnum = int(self.countComs["wiff"])
+        if w in self.countComs:
+            wiffnum = int(self.countComs["wiff"])
+        else:
+            wiffnum = 0
         wiffnum = wiffnum+1
         self.countComs["wiff"] = str(wiffnum)
         dataIO.save_json("data/countcoms/countcoms.json", self.countComs)
