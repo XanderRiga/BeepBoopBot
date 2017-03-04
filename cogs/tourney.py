@@ -1,4 +1,4 @@
-#import challonge
+import challonge
 import discord
 from discord.ext import commands
 import discord.utils
@@ -27,7 +27,5 @@ class tourney:
 	async def starttourney(self):
 		await self.bot.say("method not defined")
 
-
-
-
-
+def setup(bot):
+	bot.add_cog(tourney(bot))
