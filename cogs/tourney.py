@@ -8,7 +8,8 @@ class tourney:
 	def __init__(self, bot):
 		self.bot = bot
 		self.APIkey = "CgfNVgAJM8x8IMr8dEKcKBPxEilyLKR87sGYaCD5"; #from challonge
-		#challonge.set_credentials("Dunkas", self.APIkey)
+		challonge.set_credentials("Dunkas", self.APIkey)
+		await self.bot.say("here")
 
 	#create the tourney
 	@commands.command(pass_context=True)
