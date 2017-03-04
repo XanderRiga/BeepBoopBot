@@ -3,6 +3,7 @@ from discord.ext import commands
 import urllib
 from .utils.dataIO import dataIO
 from urllib.request import urlopen
+from .trainerobject import TrainerObject
 
 try: # check if BeautifulSoup4 is installed
 	from bs4 import BeautifulSoup
@@ -26,26 +27,16 @@ class Trainer:
     @commands.command(pass_context=True)
     async def addcode(self, ctx, trainercode, description):
         string = ctx.message.content.split()
-        
-        newcode = TrainerObject(string[0], ctx.message.author.id, string[1:])
+
+        ls = " ".join(string[2:])
+        newcode = TrainerObject(string[1], ctx.message.author.id, ls)
+        self.trainercodes[string[1]] = newcode
+        dataIO.save_json("data/trainercodes/trainercodes.json", self.trainercodes)
+        await self.bot.say("You have entered the following trainer code into the database: " + newcode.toString())
 
 
 def setup(bot):
-	if soupAvailable:
-		bot.add_cog(Mycog(bot))
-	else:
-		raise RuntimeError("You need to run `pip3 install beautifulsoup4`")
-
-
-
-class TrainerObject:
-   'Object to hold trainer codes'
-
-   def __init__(self, trainercode, author, description):
-      self.trainercode = trainercode
-      self.author = author
-      self.description = description
-
-    def toString():
-        string = "Trainer Code: " + self.trainercode + "\nAuthor: " + self.author + "\nDescription: " + self.description
-        return string
+    if soupAvailable:
+        bot.add_cog(Trainer(bot))
+    else:
+        raise RuntimeError("You need to run `pip3 install beautifulsoup4`")
