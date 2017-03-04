@@ -13,9 +13,8 @@ class tourney:
 	#create the tourney
 	@commands.command(pass_context=True)
 	async def createtourney(self, name):
-		#challonge.tournaments.start(name)
-		#tournament = challonge.tournaments.show(name)
-		await self.bot.say( "here" )
+		challonge.tournaments.start(name)
+		tournament = challonge.tournaments.show(name)
 
 	#allow people to enter the tourney
 	@commands.command(pass_context=True)
