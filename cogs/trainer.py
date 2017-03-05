@@ -4,6 +4,7 @@ import urllib
 from .utils.dataIO import dataIO
 from urllib.request import urlopen
 from .trainerobject import TrainerObject
+import json
 
 try: # check if BeautifulSoup4 is installed
 	from bs4 import BeautifulSoup
@@ -35,6 +36,11 @@ class Trainer:
         dataIO.save_json("data/trainercodes/trainercodes.json", self.trainercodes)
         await self.bot.say("You have entered the following trainer code into the database: \n" + newcode.toString())
 
+    @commands.command(pass_context=True)
+    async def removecode(self, ctx, trainercode):
+        """Remove a code from the database"""
+        del self.trainercodes.pop[trainercode]
+        await self.bot.say("You have removed the code " + trainercode + " from the database")
 
 def setup(bot):
     if soupAvailable:
