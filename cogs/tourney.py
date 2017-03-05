@@ -3,6 +3,8 @@ import discord
 from discord.ext import commands
 import discord.utils
 
+challonge.set_credentials("Dunkas", "CgfNVgAJM8x8IMr8dEKcKBPxEilyLKR87sGYaCD5")
+
 class tourney:
 
 	def __init__(self, bot):
