@@ -26,13 +26,14 @@ class Trainer:
 
     @commands.command(pass_context=True)
     async def addcode(self, ctx, trainercode, description):
+        """Add a code to our database of trainer codes!"""
         string = ctx.message.content.split()
 
         ls = " ".join(string[2:])
         newcode = TrainerObject(string[1], ctx.message.author.id, ls)
-        self.trainercodes[string[1]] = newcode
+        self.trainercodes[string[1]] = {ctx.message.author.id : ls}
         dataIO.save_json("data/trainercodes/trainercodes.json", self.trainercodes)
-        await self.bot.say("You have entered the following trainer code into the database: " + newcode.toString())
+        await self.bot.say("You have entered the following trainer code into the database: \n" + newcode.toString())
 
 
 def setup(bot):
