@@ -1,4 +1,4 @@
-from challongelib import challonge
+import challonge
 import discord
 from discord.ext import commands
 import discord.utils
