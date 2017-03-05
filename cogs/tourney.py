@@ -12,7 +12,7 @@ class tourney:
 	@commands.command(pass_context=True)
 	async def createtourney(self, name):
 		# Tell pychallonge about your [CHALLONGE! API credentials](http://api.challonge.com/v1).
-		challonge.set_credentials("Dunkas", "CgfNVgAJM8x8IMr8dEKcKBPxEilyLKR87sGYaCD5")
+		#challonge.set_credentials("Dunkas", "CgfNVgAJM8x8IMr8dEKcKBPxEilyLKR87sGYaCD5")
 
 		# Retrieve a tournament by its id (or its url).
 		tournament = challonge.tournaments.show(3272)
