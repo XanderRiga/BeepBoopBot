@@ -15,7 +15,7 @@ class tourney:
 		#challonge.set_credentials("Dunkas", "CgfNVgAJM8x8IMr8dEKcKBPxEilyLKR87sGYaCD5")
 
 		# Retrieve a tournament by its id (or its url).
-		tournament = challonge.tournaments.show(3272)
+		#tournament = challonge.tournaments.show(3272)
 
 		# Tournaments, matches, and participants are all represented as normal Python dicts.
 		print(tournament["id"])  # 3272
