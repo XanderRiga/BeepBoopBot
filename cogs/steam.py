@@ -180,7 +180,6 @@ class steam:
 		server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
 		member = discord.utils.find(lambda m: m.id== discordID, server.members)
 		await self.bot.say( member is None )
-		await self.bot.say( "nick: " + member.nick )
 		role = discord.utils.find(lambda m: m.name == rank, server.roles)
 
 		await self.bot.add_roles(member, role)
