@@ -142,9 +142,6 @@ class steam:
 		except:
 			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
 
-		except:
-			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
-
 		if (highestRank == 0):
 			rank = "Unranked"
 		if (highestRank == 1):
