@@ -109,22 +109,24 @@ class steam:
 
 	#What happens behind the scenes
 	async def updateBTS(self, discordID):
-		url = "https://rocketleague.tracker.network/profile/steam/" + self.steamList[discordID]
-		picArr = []
-		rankArr = []
-		highestRank = 0
 
 		if discordID not in self.steamList:
 			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
 			return false
 
+		url = "https://rocketleague.tracker.network/profile/steam/" + self.steamList[discordID]
+		picArr = []
+		rankArr = []
+		highestRank = 0
+
 		async with aiohttp.get(url) as response:
 			soup = BeautifulSoup(await response.text(), "html.parser")
 		try:
-			for tag in soup.contents[3].body.find(class_='container content-container').find(class_='trn-container stats-container').find(class_='table table-striped').find_all('img'):
+			for tag in soup.contents[3].body.find(class_='container content-container').find(
+					class_='trn-container stats-container').find(class_='table table-striped').find_all('img'):
 				temp2 = (tag.get('src'))
 				picArr.append(temp2)
-			
+
 			for x in picArr:
 				rankArr.append(re.findall("\d+", x))
 
@@ -135,6 +137,10 @@ class steam:
 					index += 1
 
 			highestRank = max(rankArr)
+
+
+		except:
+			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
 
 		except:
 			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
@@ -179,7 +185,6 @@ class steam:
 
 		server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
 		member = discord.utils.find(lambda m: m.id== discordID, server.members)
-		await self.bot.say( member is None )
 		role = discord.utils.find(lambda m: m.name == rank, server.roles)
 
 		await self.bot.add_roles(member, role)
