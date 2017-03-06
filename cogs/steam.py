@@ -100,7 +100,6 @@ class steam:
 		if is_admin:
 			for discordID in self.steamList:
 				bool = await self.updateBTS(discordID)
-				await self.bot.say("Here 1")
 				i+=1
 				if not bool:
 					self.bot.say("Failed to update on: " + str(i) + " aka " + discordID )
