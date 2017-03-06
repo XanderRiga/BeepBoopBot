@@ -98,13 +98,16 @@ class steam:
 		i = 0
 		if is_admin:
 			for discordID in self.steamList:
-				self.updateBTS(discordID)
+				bool = self.updateBTS(discordID)
 				i+=1
+				if not bool:
+					self.bot.say("Failed to update on: " + str(i) + " aka " + discordID )
 
 		await self.bot.say("Success: " + str(i) + " profile(s) updated")
 
 	#What happens behind the scenes
 	async def updateBTS(self, discordID):
+		await self.bot.say("At BTS")
 		url = "https://rocketleague.tracker.network/profile/steam/" + self.steamList[discordID]
 		picArr = []
 		rankArr = []
