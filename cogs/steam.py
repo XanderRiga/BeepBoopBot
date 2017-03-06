@@ -182,7 +182,7 @@ class steam:
 		server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
 		role = discord.utils.find(lambda m: m.name == rank, server.roles)
 
-		await self.bot.add_roles(author, role)
+		await self.bot.add_roles(discordID, role)
 
 		return true;
 
