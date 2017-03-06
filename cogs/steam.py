@@ -84,7 +84,7 @@ class steam:
 	async def update(self, ctx):
 		discordID = ctx.message.author.id
 
-		if updateBTS( discordID ):
+		if self.updateBTS( discordID ):
 			await self.bot.say("Congrats! Your updated rank is: " + rank )
 		else:
 			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
