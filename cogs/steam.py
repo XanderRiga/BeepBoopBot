@@ -178,7 +178,7 @@ class steam:
 		else:
 			rank = "0"
 
-		await self.bot.say( rank ) # DEBUGGING DELETE ME
+		await self.bot.say( "Here, rank = " + rank ) # DEBUGGING DELETE ME
 
 		self.rankList[discordID] = rank
 		dataIO.save_json("data/rank/rank.json", self.rankList)
