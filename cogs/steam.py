@@ -86,7 +86,7 @@ class steam:
 		bool = await self.updateBTS(discordID)
 
 		if bool:
-			await self.bot.say( "Congrats your rank updated! Check your roles." )
+			await self.bot.say( "Congrats, your rank updated! Check your roles." )
 		else:
 			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
 
@@ -141,8 +141,6 @@ class steam:
 
 		except:
 			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
-
-		await self.bot.say( str(highestRank) )
 
 		if (highestRank == 0):
 			rank = "Unranked"
