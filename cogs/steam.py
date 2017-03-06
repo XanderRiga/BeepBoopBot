@@ -86,7 +86,7 @@ class steam:
 
 		if updateBTS( discordID ):
 			await self.bot.say("Congrats! Your updated rank is: " + rank )
-		else
+		else:
 			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
 
 	#admin command to update all
