@@ -83,8 +83,9 @@ class steam:
 	@commands.command(pass_context=True)
 	async def update(self, ctx):
 		discordID = ctx.message.author.id
+		bool = await self.updateBTS(discordID)
 
-		if await self.updateBTS( discordID ):
+		if bool:
 			await self.bot.say( "Congrats your rank updated! Check your roles." )
 		else:
 			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
