@@ -84,7 +84,7 @@ class steam:
 	async def update(self, ctx):
 		discordID = ctx.message.author.id
 
-		if updateBTS( discordID )
+		if updateBTS( discordID ):
 			await self.bot.say("Congrats! Your updated rank is: " + rank )
 		else
 			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
@@ -95,11 +95,11 @@ class steam:
 		author = ctx.message.author
 		is_admin = discord.utils.get(author.roles, name=self.admin_role) is not None
 
-		i = 0;
+		i = 0
 		if is_admin:
 			for discordID in self.steamList:
 				self.updateBTS(discordID)
-				i+=1;
+				i+=1
 
 		await self.bot.say("Success: " + str(i) + " profile(s) updated")
 
