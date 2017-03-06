@@ -30,7 +30,7 @@ class steam:
 
 	@commands.command(pass_context=True)
 	async def relinksteam(self, ctx, reguser : discord.Member, steamID):
-		"""Use this to link a usser's Steam ID to their Discord"""
+		"""Use this to link a user's Steam ID to their Discord"""
 		author = ctx.message.author
 		
 		is_admin = discord.utils.get(author.roles, name=self.admin_role) is not None
