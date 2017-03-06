@@ -174,13 +174,12 @@ class steam:
 		else:
 			rank = "0"
 
-		await self.bot.say( "Here, rank = " + rank ) # DEBUGGING DELETE ME
-
 		self.rankList[discordID] = rank
 		dataIO.save_json("data/rank/rank.json", self.rankList)
 
 		server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
 		member = discord.utils.find(lambda m: m.id== discordID, server.members)
+		await self.bot.say( "mem: " + member )
 		role = discord.utils.find(lambda m: m.name == rank, server.roles)
 
 		await self.bot.add_roles(member, role)
