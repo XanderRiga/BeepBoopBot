@@ -39,7 +39,10 @@ class Trainer:
     @commands.command(pass_context=True)
     async def removecode(self, ctx, trainercode):
         """Remove a code from the database"""
-        del self.trainercodes.pop[trainercode]
+        for x in self.trainercodes:
+            if x == trainercode:
+                del x
+        #self.trainercodes.pop(trainercode)
         await self.bot.say("You have removed the code " + trainercode + " from the database")
 
 def setup(bot):
