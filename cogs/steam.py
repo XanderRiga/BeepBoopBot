@@ -113,7 +113,6 @@ class steam:
 		picArr = []
 		rankArr = []
 		highestRank = 0
-		author = ctx.message.author
 
 		if discordID not in self.steamList:
 			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
