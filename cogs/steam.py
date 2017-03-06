@@ -179,7 +179,9 @@ class steam:
 		self.rankList[discordID] = rank
 		dataIO.save_json("data/rank/rank.json", self.rankList)
 
-		member = discord.utils.find(lambda m: m.id== discordID, self.bot.members)
+		server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
+		member = discord.utils.find(lambda m: m.id== discordID, server.members)
+
 		await self.bot.add_roles(author, role)
 
 		return true;
