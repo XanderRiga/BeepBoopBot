@@ -142,37 +142,39 @@ class steam:
 		except:
 			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
 
+		await self.bot.say( str(highestRank) )
+
 		if (highestRank == 0):
 			rank = "Unranked"
-		if (highestRank == 1):
+		elif (highestRank == 1):
 			rank = "Prospect 1"
-		if (highestRank == 2):
+		elif (highestRank == 2):
 			rank = "Prospect 2"
-		if (highestRank == 3):
+		elif (highestRank == 3):
 			rank = "Prospect 3"
-		if (highestRank == 4):
+		elif (highestRank == 4):
 			rank = "Prospect Elite"
-		if (highestRank == 5):
+		elif (highestRank == 5):
 			rank = "Challenger 1"
-		if (highestRank == 6):
+		elif (highestRank == 6):
 			rank = "Challenger 2"
-		if (highestRank == 7):
+		elif (highestRank == 7):
 			rank = "Challenger 3"
-		if (highestRank == 8):
+		elif (highestRank == 8):
 			rank = "Challenger Elite"
-		if (highestRank == 9):
+		elif (highestRank == 9):
 			rank = "Rising Star"
-		if (highestRank == 10):
+		elif (highestRank == 10):
 			rank = "Shooting Star"
-		if (highestRank == 11):
+		elif (highestRank == 11):
 			rank = "All Star"
-		if (highestRank == 12):
+		elif (highestRank == 12):
 			rank = "Super Star"
-		if (highestRank == 13):
+		elif (highestRank == 13):
 			rank = "Champion"
-		if (highestRank == 14):
+		elif (highestRank == 14):
 			rank = "Super Champion"
-		if (highestRank == 15):
+		elif (highestRank == 15):
 			rank = "Grand Champion"
 		else:
 			rank = "0"
