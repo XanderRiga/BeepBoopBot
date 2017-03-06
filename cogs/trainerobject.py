@@ -1,10 +1,9 @@
 class TrainerObject(object):
     """An object to store trainer codes"""
 
-    def __init__(self, trainercode, author, description):
+    def __init__(self, trainercode, description):
         """Return a new Car object."""
         self.trainercode = trainercode
-        self.author = author
         self.description = description
 
     def toString(self):
@@ -12,7 +11,7 @@ class TrainerObject(object):
         return string
 
     def __hash__(self):
-        return hash((self.author, self.trainercode))
+        return hash(self.trainercode)
 
     def __eq__(self, other):
-        return (self.author, self.trainercode) == (other.author, other.trainercode)
+        return self.trainercode == other.trainercode
