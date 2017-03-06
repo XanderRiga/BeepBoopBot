@@ -184,7 +184,7 @@ class steam:
 
 		await self.bot.add_roles(member, role)
 
-		return true;
+		return True
 
 def setup(bot):
 	bot.add_cog(steam(bot))
