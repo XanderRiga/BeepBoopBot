@@ -108,7 +108,6 @@ class steam:
 
 	#What happens behind the scenes
 	async def updateBTS(self, discordID):
-		await self.bot.say("At BTS")
 		url = "https://rocketleague.tracker.network/profile/steam/" + self.steamList[discordID]
 		picArr = []
 		rankArr = []
@@ -121,15 +120,9 @@ class steam:
 		async with aiohttp.get(url) as response:
 			soup = BeautifulSoup(await response.text(), "html.parser")
 		try:
-			#await self.bot.say(url)
-			#await self.bot.say(len(soup.contents))
 			for tag in soup.contents[3].body.find(class_='container content-container').find(class_='trn-container stats-container').find(class_='table table-striped').find_all('img'):
-				#temp = ''.join(tag.get_text().split())
 				temp2 = (tag.get('src'))
-				#await self.bot.say(temp2)
 				picArr.append(temp2)
-
-			#await self.bot.say(picArr)
 			
 			for x in picArr:
 				rankArr.append(re.findall("\d+", x))
