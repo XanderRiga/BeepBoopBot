@@ -82,28 +82,12 @@ class steam:
 	#command for user to update their own mmr
 	@commands.command(pass_context=True)
 	async def update(self, ctx):
-		author = ctx.message.author
 		discordID = ctx.message.author.id
 
-		if discordID in self.steamList:
-			rank = await self.updateBTS(discordID)
-		else:
+		if updateBTS( discordID )
+			await self.bot.say("Congrats! Your updated rank is: " + rank )
+		else
 			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
-			return
-
-		self.rankList[discordID] = rank
-		dataIO.save_json("data/rank/rank.json", self.rankList)
-
-		#id on next line needs to be replaced with server id
-		server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
-		#await self.bot.say(author.top_role.name + ': ' + rank)
-		role = discord.utils.find(lambda m: m.name == rank, server.roles)
-		#role = discord.Object(id='287044463400976384')
-		#for x in role:
-			#await self.bot.say(x.name + ": " + x.id)
-		
-		await self.bot.add_roles(author, role)
-		await self.bot.say("Congrats! Your updated rank is: " + rank )
 
 	#admin command to update all
 	@commands.command(pass_context=True)
@@ -112,7 +96,6 @@ class steam:
 		is_admin = discord.utils.get(author.roles, name=self.admin_role) is not None
 
 		i = 0;
-
 		if is_admin:
 			for discordID in self.steamList:
 				self.updateBTS(discordID)
@@ -123,11 +106,15 @@ class steam:
 	#What happens behind the scenes
 	async def updateBTS(self, discordID):
 		url = "https://rocketleague.tracker.network/profile/steam/" + self.steamList[discordID]
-		#from xcog:
-		#await self.bot.say(url)
 		picArr = []
 		rankArr = []
 		highestRank = 0
+		author = ctx.message.author
+		discordID = ctx.message.author.id
+
+		if discordID not in self.steamList:
+			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
+			return false
 
 		async with aiohttp.get(url) as response:
 			soup = BeautifulSoup(await response.text(), "html.parser")
@@ -158,45 +145,50 @@ class steam:
 		except:
 			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
 
-
 		if (highestRank == 0):
-			return "Unranked"
+			rank = "Unranked"
 		if (highestRank == 1):
-			return "Prospect 1"
+			rank = "Prospect 1"
 		if (highestRank == 2):
-			return "Prospect 2"
+			rank = "Prospect 2"
 		if (highestRank == 3):
-			return "Prospect 3"
+			rank = "Prospect 3"
 		if (highestRank == 4):
-			return "Prospect Elite"
+			rank = "Prospect Elite"
 		if (highestRank == 5):
-			return "Challenger 1"
+			rank = "Challenger 1"
 		if (highestRank == 6):
-			return "Challenger 2"
+			rank = "Challenger 2"
 		if (highestRank == 7):
-			return "Challenger 3"
+			rank = "Challenger 3"
 		if (highestRank == 8):
-			return "Challenger Elite"
+			rank = "Challenger Elite"
 		if (highestRank == 9):
-			return "Rising Star"
+			rank = "Rising Star"
 		if (highestRank == 10):
-			return "Shooting Star"
+			rank = "Shooting Star"
 		if (highestRank == 11):
-			return "All Star"
+			rank = "All Star"
 		if (highestRank == 12):
-			return "Super Star"
+			rank = "Super Star"
 		if (highestRank == 13):
-			return "Champion"
+			rank = "Champion"
 		if (highestRank == 14):
-			return "Super Champion"
+			rank = "Super Champion"
 		if (highestRank == 15):
-			return "Grand Champion"	
+			rank = "Grand Champion"
 		else:
-			return "0"
-		
-		
+			rank = "0"
 
+		self.rankList[discordID] = rank
+		dataIO.save_json("data/rank/rank.json", self.rankList)
 
+		server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
+		role = discord.utils.find(lambda m: m.name == rank, server.roles)
+
+		await self.bot.add_roles(author, role)
+
+		return true;
 
 def setup(bot):
 	bot.add_cog(steam(bot))
