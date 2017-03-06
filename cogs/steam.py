@@ -182,8 +182,6 @@ class steam:
 		server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
 		role = discord.utils.find(lambda m: m.name == rank, server.roles)
 
-		await self.bot.say(role)  # DEBUGGING DELETE ME
-
 		await self.bot.add_roles(author, role)
 
 		return true;
