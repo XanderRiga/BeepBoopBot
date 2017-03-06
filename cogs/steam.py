@@ -85,7 +85,7 @@ class steam:
 		discordID = ctx.message.author.id
 
 		if self.updateBTS( discordID ):
-			await self.bot.say( "Congrats your rank updated! Check your rolls." )
+			await self.bot.say( "Congrats your rank updated! Check your roles." )
 		else:
 			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
 
@@ -138,9 +138,7 @@ class steam:
 					rankArr[index] = int(y)
 					index += 1
 
-			#await self.bot.say(rankArr)
 			highestRank = max(rankArr)
-			#await self.bot.say(highestRank)
 
 		except:
 			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
@@ -180,11 +178,15 @@ class steam:
 		else:
 			rank = "0"
 
+		await self.bot.say( rank ) # DEBUGGING DELETE ME
+
 		self.rankList[discordID] = rank
 		dataIO.save_json("data/rank/rank.json", self.rankList)
 
 		server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
 		role = discord.utils.find(lambda m: m.name == rank, server.roles)
+
+		await self.bot.say(role)  # DEBUGGING DELETE ME
 
 		await self.bot.add_roles(author, role)
 
