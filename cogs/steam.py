@@ -181,19 +181,31 @@ class steam:
 		dataIO.save_json("data/rank/rank.json", self.rankList)
 
 		#MUST SET SERVER ID BACK TO WCU AFTER
-		server = discord.utils.find(lambda m: m.id=='286557202523750411', self.bot.servers)
+		server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
 		member = discord.utils.find(lambda m: m.id== discordID, server.members)
 		role = discord.utils.find(lambda m: m.name == rank, server.roles)
 
 		ranksToRemove = []
+		userRoles = []
+
+		for z in member.roles:
+			userRoles.append(z.name)
+
 		for x in self.allRanks:
-			if x in member.roles:
+			#await self.bot.say(x)
+			if x in userRoles:
+				#await self.bot.say("it should append a role now")
 				ranksToRemove.append(x)
 
-		for y in ranksToRemove:
-			await self.bot.remove_roles(member, y)
+		try:
+			for x in ranksToRemove:
+				tempRank = discord.utils.find(lambda m: m.name == x, server.roles)
+				await self.bot.remove_roles(member, tempRank)
+		except:
+			pass
 
 		await self.bot.add_roles(member, role)
+
 
 		return True
 

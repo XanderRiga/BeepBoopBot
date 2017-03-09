@@ -21,8 +21,8 @@
       <file leaf-file-name="steam.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cogs/steam.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="179" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+            <state relative-caret-position="581">
+              <caret line="199" column="12" lean-forward="true" selection-start-line="199" selection-start-column="12" selection-end-line="199" selection-end-column="12" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -33,7 +33,7 @@
       <file leaf-file-name="trainer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cogs/trainer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
+            <state relative-caret-position="714">
               <caret line="48" column="73" lean-forward="false" selection-start-line="48" selection-start-column="73" selection-end-line="48" selection-end-column="73" />
               <folding />
             </state>
@@ -114,7 +114,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -144,10 +144,50 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/cogs/steam.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cogs/trainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="48" column="73" lean-forward="false" selection-start-line="48" selection-start-column="73" selection-end-line="48" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cogs/customcom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="75" column="31" lean-forward="false" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cogs/audio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23358">
+          <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cogs/trainer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -269,7 +309,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cogs/trainer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
+        <state relative-caret-position="714">
           <caret line="48" column="73" lean-forward="false" selection-start-line="48" selection-start-column="73" selection-end-line="48" selection-end-column="73" />
           <folding />
         </state>
@@ -277,8 +317,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cogs/steam.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="179" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+        <state relative-caret-position="581">
+          <caret line="199" column="12" lean-forward="true" selection-start-line="199" selection-start-column="12" selection-end-line="199" selection-end-column="12" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
