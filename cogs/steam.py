@@ -24,7 +24,7 @@ class steam:
 		self.bot = bot
 		self.steamList = dataIO.load_json("data/steam/steam.json")
 		self.rankList = dataIO.load_json("data/rank/rank.json")
-		self.server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
+		self.server = discord.utils.find(lambda m: m.id=='286557202523750411', self.bot.servers)
 		self.admin_role = settings.get_server_admin(self.server)
 		self.mod_role = settings.get_server_mod(self.server)
 		self.allRanks = ["Unranked", "Prospect 1", "Prospect 2", "Prospect 3", "Prospect Elite", "Challenger 1", "Challenger 2", "Challenger 3", "Challenger Elite", "Rising Star", "Shooting Star", "All Star", "Super Star", "Champion", "Super Champion", "Grand Champion"]
@@ -181,7 +181,7 @@ class steam:
 		dataIO.save_json("data/rank/rank.json", self.rankList)
 
 		#MUST SET SERVER ID BACK TO WCU AFTER
-		server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
+		server = discord.utils.find(lambda m: m.id=='286557202523750411', self.bot.servers)
 		member = discord.utils.find(lambda m: m.id== discordID, server.members)
 		role = discord.utils.find(lambda m: m.name == rank, server.roles)
 
