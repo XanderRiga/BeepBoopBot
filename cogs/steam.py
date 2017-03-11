@@ -181,7 +181,7 @@ class steam:
 		dataIO.save_json("data/rank/rank.json", self.rankList)
 
 		#MUST SET SERVER ID BACK TO WCU AFTER
-		server = discord.utils.find(lambda m: m.id=='286557202523750411', self.bot.servers)
+		server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
 		member = discord.utils.find(lambda m: m.id== discordID, server.members)
 		role = discord.utils.find(lambda m: m.name == rank, server.roles)
 
