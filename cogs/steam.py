@@ -27,7 +27,7 @@ class steam:
 		self.server = discord.utils.find(lambda m: m.id=='174382936877957120', self.bot.servers)
 		self.admin_role = settings.get_server_admin(self.server)
 		self.mod_role = settings.get_server_mod(self.server)
-		self.allRanks = ["Unranked", "Prospect 1", "Prospect 2", "Prospect 3", "Prospect Elite", "Challenger 1", "Challenger 2", "Challenger 3", "Challenger Elite", "Rising Star", "Shooting Star", "All Star", "Super Star", "Champion", "Super Champion", "Grand Champion"]
+		self.allRanks = ["Unranked", "Bronze 1", "Bronze 2", "Bronze 3", "Silver 1", "Silver 2", "Silver 3", "Gold 1", "Gold 2", "Gold 3", "Platinum 1", "Platinum 2", "Platinum 3", "Diamond 1", "Diamond 2", "Diamond 3", "Champion 1", "Champion 2", "Champion 3", "Grand Champion"]
 
 	@commands.command(pass_context=True)
 	async def relinksteam(self, ctx, reguser : discord.Member, steamID):
@@ -122,22 +122,25 @@ class steam:
 		async with aiohttp.get(url) as response:
 			soup = BeautifulSoup(await response.text(), "html.parser")
 		try:
-			for tag in soup.contents[3].body.find(class_='container content-container').find(
-					class_='trn-container stats-container').find(class_='table table-striped').find_all('img'):
+			for tag in soup.contents[3].body.find(class_='container content-container').find(class_='card-table items').find_all('img'):
 				temp2 = (tag.get('src'))
+				#await self.bot.say(temp2)
 				picArr.append(temp2)
 
 			for x in picArr:
+				#This makes an array of just the numbers in the URLs. Each one is a list of 2, the first is always 4, the 2nd is the number I want
 				rankArr.append(re.findall("\d+", x))
+				#await self.bot.say(re.findall("\d+", x))
+
+			#await self.bot.say(rankArr)
 
 			index = 0
 			for x in rankArr:
-				for y in x:
-					rankArr[index] = int(y)
-					index += 1
+				rankArr[index] = int(x[1])
+				index += 1
 
 			highestRank = max(rankArr)
-
+			#await self.bot.say(highestRank)
 
 		except:
 			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
@@ -145,34 +148,42 @@ class steam:
 		if (highestRank == 0):
 			rank = "Unranked"
 		elif (highestRank == 1):
-			rank = "Prospect 1"
+			rank = "Bronze 1"
 		elif (highestRank == 2):
-			rank = "Prospect 2"
+			rank = "Bronze 2"
 		elif (highestRank == 3):
-			rank = "Prospect 3"
+			rank = "Bronze 3"
 		elif (highestRank == 4):
-			rank = "Prospect Elite"
+			rank = "Silver 1"
 		elif (highestRank == 5):
-			rank = "Challenger 1"
+			rank = "Silver 2"
 		elif (highestRank == 6):
-			rank = "Challenger 2"
+			rank = "Silver 3"
 		elif (highestRank == 7):
-			rank = "Challenger 3"
+			rank = "Gold 1"
 		elif (highestRank == 8):
-			rank = "Challenger Elite"
+			rank = "Gold 2"
 		elif (highestRank == 9):
-			rank = "Rising Star"
+			rank = "Gold 3"
 		elif (highestRank == 10):
-			rank = "Shooting Star"
+			rank = "Platinum 1"
 		elif (highestRank == 11):
-			rank = "All Star"
+			rank = "Platinum 2"
 		elif (highestRank == 12):
-			rank = "Super Star"
+			rank = "Platinum 3"
 		elif (highestRank == 13):
-			rank = "Champion"
+			rank = "Diamond 1"
 		elif (highestRank == 14):
-			rank = "Super Champion"
+			rank = "Diamond 2"
 		elif (highestRank == 15):
+			rank = "Diamond 3"
+		elif (highestRank == 16):
+			rank = "Champion 1"
+		elif (highestRank == 17):
+			rank = "Champion 2"
+		elif (highestRank == 18):
+			rank = "Champion 3"
+		elif (highestRank == 19):
 			rank = "Grand Champion"
 		else:
 			rank = "0"
