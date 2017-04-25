@@ -38,6 +38,7 @@ class steam:
 
 		rankNums = {}
 
+
 		#assign a number for each persons rank so they can be sorted
 		for x in self.rankList:
 			try:
@@ -62,6 +63,8 @@ class steam:
 		sorted_ranks.reverse()
 		#await self.bot.say(sorted_ranks)
 
+		finalStr = ""
+
 		for a in sorted_ranks:
 			rankName = await self.numToRank(a[1])
 
@@ -71,9 +74,9 @@ class steam:
 			server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
 			emoji = discord.utils.find(lambda m: m.name == emojiName, server.emojis)
 
-			await self.bot.say(str(emoji) + " " + a[0])
+			finalStr += str(emoji) + " " + a[0] + "\n"
 
-
+		await self.bot.say(finalStr)
 
 
 
