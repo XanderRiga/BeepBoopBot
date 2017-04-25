@@ -7,6 +7,7 @@ import urllib
 from .utils.dataIO import dataIO
 from urllib.request import urlopen
 import re
+import operator
 import discord.utils
 from __main__ import send_cmd_help, settings
 
@@ -28,6 +29,54 @@ class steam:
 		self.admin_role = settings.get_server_admin(self.server)
 		self.mod_role = settings.get_server_mod(self.server)
 		self.allRanks = ["Unranked", "Bronze 1", "Bronze 2", "Bronze 3", "Silver 1", "Silver 2", "Silver 3", "Gold 1", "Gold 2", "Gold 3", "Platinum 1", "Platinum 2", "Platinum 3", "Diamond 1", "Diamond 2", "Diamond 3", "Champion 1", "Champion 2", "Champion 3", "Grand Champion"]
+
+	@commands.command(pass_context=True)
+	async def listranks(self, ctx):
+		"""Use this command to list all of the ranked users on the server"""
+
+		#await self.bot.say("The ranks will be listed here")
+
+		rankNums = {}
+
+		#assign a number for each persons rank so they can be sorted
+		for x in self.rankList:
+			try:
+				#needs to be correct server ID for server it is used on
+				server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
+				member = discord.utils.find(lambda m: m.id == x, server.members)
+				if (member == None):
+					continue
+				#await self.bot.say(member.name)
+			except:
+				continue
+			rank = self.rankList[x]
+
+			rankNum = await	self.rankToNum(rank)
+
+			rankNums[member.name] = rankNum
+
+			#await self.bot.say("Member = " + member.name + " RankNum = " + str(rankNum))
+
+
+		sorted_ranks = sorted(rankNums.items(), key=operator.itemgetter(1))
+		sorted_ranks.reverse()
+		#await self.bot.say(sorted_ranks)
+
+		for a in sorted_ranks:
+			rankName = await self.numToRank(a[1])
+
+			emojiName = rankName.replace(" ", "")
+			emojiName = emojiName.lower()
+
+			server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
+			emoji = discord.utils.find(lambda m: m.name == emojiName, server.emojis)
+
+			await self.bot.say(str(emoji) + " " + a[0])
+
+
+
+
+
 
 	@commands.command(pass_context=True)
 	async def relinksteam(self, ctx, reguser : discord.Member, steamID):
@@ -186,7 +235,7 @@ class steam:
 		elif (highestRank == 19):
 			rank = "Grand Champion"
 		else:
-			rank = "0"
+			rank = "Unranked"
 
 		self.rankList[discordID] = rank
 		dataIO.save_json("data/rank/rank.json", self.rankList)
@@ -219,6 +268,103 @@ class steam:
 
 
 		return True
+
+	async def numToRank(self, highestRank):
+
+		if (highestRank == 0):
+			rank = "Unranked"
+		elif (highestRank == 1):
+			rank = "Bronze 1"
+		elif (highestRank == 2):
+			rank = "Bronze 2"
+		elif (highestRank == 3):
+			rank = "Bronze 3"
+		elif (highestRank == 4):
+			rank = "Silver 1"
+		elif (highestRank == 5):
+			rank = "Silver 2"
+		elif (highestRank == 6):
+			rank = "Silver 3"
+		elif (highestRank == 7):
+			rank = "Gold 1"
+		elif (highestRank == 8):
+			rank = "Gold 2"
+		elif (highestRank == 9):
+			rank = "Gold 3"
+		elif (highestRank == 10):
+			rank = "Platinum 1"
+		elif (highestRank == 11):
+			rank = "Platinum 2"
+		elif (highestRank == 12):
+			rank = "Platinum 3"
+		elif (highestRank == 13):
+			rank = "Diamond 1"
+		elif (highestRank == 14):
+			rank = "Diamond 2"
+		elif (highestRank == 15):
+			rank = "Diamond 3"
+		elif (highestRank == 16):
+			rank = "Champion 1"
+		elif (highestRank == 17):
+			rank = "Champion 2"
+		elif (highestRank == 18):
+			rank = "Champion 3"
+		elif (highestRank == 19):
+			rank = "Grand Champion"
+		else:
+			rank = "Unranked"
+
+		return rank
+
+
+	async def rankToNum(self, rank):
+
+		if (rank == "Unranked"):
+			rankNum = 0
+		elif (rank == "Bronze 1"):
+			rankNum = 1
+		elif (rank == "Bronze 2"):
+			rankNum = 2
+		elif (rank == "Bronze 3"):
+			rankNum = 3
+		elif (rank == "Silver 1"):
+			rankNum = 4
+		elif (rank == "Silver 2"):
+			rankNum = 5
+		elif (rank == "Silver 3"):
+			rankNum = 6
+		elif (rank == "Gold 1"):
+			rankNum = 7
+		elif (rank == "Gold 2"):
+			rankNum = 8
+		elif (rank == "Gold 3"):
+			rankNum = 9
+		elif (rank == "Platinum 1"):
+			rankNum = 10
+		elif (rank == "Platinum 2"):
+			rankNum = 11
+		elif (rank == "Platinum 3"):
+			rankNum = 12
+		elif (rank == "Diamond 1"):
+			rankNum = 13
+		elif (rank == "Diamond 2"):
+			rankNum = 14
+		elif (rank == "Diamond 3"):
+			rankNum = 15
+		elif (rank == "Champion 1"):
+			rankNum = 16
+		elif (rank == "Champion 2"):
+			rankNum = 17
+		elif (rank == "Champion 3"):
+			rankNum = 18
+		elif (rank == "Grand Champion"):
+			rankNum = 19
+		else:
+			rankNum = 0
+
+		return rankNum
+
+
 
 def setup(bot):
 	bot.add_cog(steam(bot))
