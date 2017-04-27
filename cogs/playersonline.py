@@ -15,7 +15,7 @@ class playersonline:
 
     @commands.command()
     async def whosonline(self):
-        server = discord.utils.find(lambda m: m.id == '286557202523750411', self.bot.servers)
+        server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
         memberList = server.members
         membersGaming = []
 
