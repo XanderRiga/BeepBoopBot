@@ -84,7 +84,7 @@ class steam:
 			emoji = discord.utils.find(lambda m: m.name == emojiName, server.emojis)
 
 			if (author.name == a[0]):
-				finalStr += "**" + str(emoji) + " " + a[0] + "**" "\n"
+				finalStr += "__**" + str(emoji) + " " + a[0] + "**__" "\n"
 			else:
 				finalStr += str(emoji) + " " + a[0] + "\n"
 
