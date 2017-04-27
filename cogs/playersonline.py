@@ -15,9 +15,12 @@ class playersonline:
 
     @commands.command()
     async def whosonline(self):
-        server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
+        server = discord.utils.find(lambda m: m.id == '286557202523750411', self.bot.servers)
         memberList = server.members
         membersGaming = []
+
+        finalString = ""
+
         for x in memberList:
             if x.game is not None:
                 membersGaming.append(x)
@@ -35,7 +38,10 @@ class playersonline:
                     gamesBeingPlayed[x.game.name] = 1
 
         for x in gamesBeingPlayed:
-            await self.bot.say(str(gamesBeingPlayed[x]) + " player(s) playing " + x)
+            finalString += str(gamesBeingPlayed[x]) + " player(s) playing " + x + "\n"
+            #await self.bot.say(str(gamesBeingPlayed[x]) + " player(s) playing " + x)
+
+        await self.bot.say(finalString)
 
 
 
