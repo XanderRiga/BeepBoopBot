@@ -61,11 +61,18 @@ class steam:
 
 		sorted_ranks = sorted(rankNums.items(), key=operator.itemgetter(1))
 		sorted_ranks.reverse()
+
+		rank_list_final = []
+
+		for x in sorted_ranks:
+			if (x[1] >= 1):
+				rank_list_final.append(x)
+
 		#await self.bot.say(sorted_ranks)
 
 		finalStr = ""
 
-		for a in sorted_ranks:
+		for a in rank_list_final:
 			rankName = await self.numToRank(a[1])
 
 			emojiName = rankName.replace(" ", "")
