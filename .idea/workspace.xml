@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6e337b8-91ab-4457-84af-f33736a51ed4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cogs/steam.py" afterPath="$PROJECT_DIR$/cogs/steam.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,8 +20,8 @@
       <file leaf-file-name="steam.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cogs/steam.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+            <state relative-caret-position="221">
+              <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -377,6 +376,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23681">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -418,6 +420,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23358">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -459,6 +464,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23358">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -500,6 +508,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23358">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -541,6 +552,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23358">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -572,6 +586,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23358">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -603,6 +620,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23358">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -634,6 +654,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23358">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -655,6 +678,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23358">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -686,6 +712,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23681">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -724,6 +753,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23358">
           <caret line="1393" column="65" lean-forward="false" selection-start-line="1393" selection-start-column="62" selection-end-line="1393" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -753,8 +785,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cogs/steam.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+        <state relative-caret-position="221">
+          <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>

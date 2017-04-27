@@ -34,6 +34,8 @@ class steam:
 	async def listranks(self, ctx):
 		"""Use this command to list all of the ranked users on the server"""
 
+		author = ctx.message.author
+
 		#await self.bot.say("The ranks will be listed here")
 
 		rankNums = {}
@@ -81,7 +83,10 @@ class steam:
 			server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
 			emoji = discord.utils.find(lambda m: m.name == emojiName, server.emojis)
 
-			finalStr += str(emoji) + " " + a[0] + "\n"
+			if (author.name == a[0]):
+				finalStr += "**" + str(emoji) + " " + a[0] + "**" "\n"
+			else:
+				finalStr += str(emoji) + " " + a[0] + "\n"
 
 		await self.bot.say(finalStr)
 
