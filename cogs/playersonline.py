@@ -39,10 +39,30 @@ class playersonline:
 
         for x in gamesBeingPlayed:
             finalString += str(gamesBeingPlayed[x]) + " player(s) playing " + x + "\n"
-            #await self.bot.say(str(gamesBeingPlayed[x]) + " player(s) playing " + x)
 
         await self.bot.say(finalString)
 
+    #This will give player who calls the command the role for the specified game
+    @commands.command(pass_context=True)
+    async def role(self, ctx, game):
+        if game != "PUBG" and game != "Overwatch":
+            await self.bot.say("Currently the only games you can add roles for are \"Overwatch\" and \"PUBG\"")
+            return
+
+        author = ctx.message.author
+
+        # MUST SET SERVER ID BACK TO WCU AFTER: 174382936877957120
+        server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
+        role = discord.utils.find(lambda m: m.name == game, server.roles)
+
+        for x in author.roles:
+            if(role == x):
+                await self.bot.remove_roles(author, role)
+                await self.bot.say("You have removed " + game + " from your roles")
+                return
+
+        await self.bot.add_roles(author, role)
+        await self.bot.say("You have given yourself the " + game + " role")
 
 
 def setup(bot):
