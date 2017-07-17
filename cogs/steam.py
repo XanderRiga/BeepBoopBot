@@ -186,7 +186,7 @@ class steam:
 		async with aiohttp.get(url) as response:
 			soup = BeautifulSoup(await response.text(), "html.parser")
 		try:
-			for tag in soup.contents[3].body.find(class_='container content-container').find(class_='card-table items').find_all('img'):
+			for tag in soup.contents[3].body.find(class_='container content-container').find_all(class_='card-table items')[1].find_all('img'):
 				temp2 = (tag.get('src'))
 				#await self.bot.say(temp2)
 				picArr.append(temp2)
