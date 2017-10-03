@@ -142,18 +142,16 @@ class steam:
 		else:
 			self.steamList[discordID] = steamID
 			dataIO.save_json("data/steam/steam.json", self.steamList)
-			await self.bot.say("Success! Your steam ID is now linked to your Discord ID.")
+			await self.bot.say("Success! Your steam ID is now linked to your Discord ID. Use !update to update your rank")
 
 	#command for user to update their own mmr
 	@commands.command(pass_context=True)
 	async def update(self, ctx):
 		discordID = ctx.message.author.id
-		bool = await self.updateBTS(discordID)
+		steamLinked = await self.updateBTS(discordID)
 
-		if bool:
+		if steamLinked:
 			await self.bot.say( "Congrats, your rank updated! Check your roles." )
-		else:
-			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
 
 	#admin command to update all
 	@commands.command(pass_context=True)
@@ -175,8 +173,8 @@ class steam:
 	async def updateBTS(self, discordID):
 
 		if discordID not in self.steamList:
-			await self.bot.say("Your steam is not linked. use !linksteam to get your rank")
-			return false
+			await self.bot.say("Your steam is not linked. use !linksteam to link your steam account and see your rank")
+			return False
 
 		url = "https://rocketleague.tracker.network/profile/steam/" + self.steamList[discordID]
 		picArr = []
@@ -186,17 +184,13 @@ class steam:
 		async with aiohttp.get(url) as response:
 			soup = BeautifulSoup(await response.text(), "html.parser")
 		try:
-			for tag in soup.contents[3].body.find(class_='container content-container').find_all(class_='card-table items')[1].find_all('img'):
+			for tag in soup.contents[3].body.find(class_='container content-container').find_all(class_='season-table')[0].find_all('img'):
 				temp2 = (tag.get('src'))
-				#await self.bot.say(temp2)
 				picArr.append(temp2)
 
 			for x in picArr:
 				#This makes an array of just the numbers in the URLs. Each one is a list of 2, the first is always 4, the 2nd is the number I want
 				rankArr.append(re.findall("\d+", x))
-				#await self.bot.say(re.findall("\d+", x))
-
-			#await self.bot.say(rankArr)
 
 			index = 0
 			for x in rankArr:
@@ -204,10 +198,10 @@ class steam:
 				index += 1
 
 			highestRank = max(rankArr)
-			#await self.bot.say(highestRank)
 
 		except:
-			await self.bot.say("Couldn't load mmr. Is rocketleague.tracker.network offline?")
+			await self.bot.say("Couldn't load mmr. Either rocketleague.tracker.network is offline, or you linked the incorrect steam ID. Contact an admin for help if rocketleague.tracker.network is still online")
+			return False
 
 		if (highestRank == 0):
 			rank = "Unranked"
@@ -280,7 +274,6 @@ class steam:
 			pass
 
 		await self.bot.add_roles(member, role)
-
 
 		return True
 
