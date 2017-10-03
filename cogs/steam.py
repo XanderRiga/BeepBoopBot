@@ -148,10 +148,10 @@ class steam:
 	@commands.command(pass_context=True)
 	async def update(self, ctx):
 		discordID = ctx.message.author.id
-		steamLinked = await self.updateBTS(discordID)
+		newRank = await self.updateBTS(discordID)
 
-		if steamLinked:
-			await self.bot.say( "Congrats, your rank updated! Check your roles." )
+		if newRank:
+			await self.bot.say("Congrats, your rank was updated to " + newRank + "!")
 
 	#admin command to update all
 	@commands.command(pass_context=True)
@@ -206,41 +206,41 @@ class steam:
 		if (highestRank == 0):
 			rank = "Unranked"
 		elif (highestRank == 1):
-			rank = "Bronze 1"
+			rank = "Bronze"
 		elif (highestRank == 2):
-			rank = "Bronze 2"
+			rank = "Bronze"
 		elif (highestRank == 3):
-			rank = "Bronze 3"
+			rank = "Bronze"
 		elif (highestRank == 4):
-			rank = "Silver 1"
+			rank = "Silver"
 		elif (highestRank == 5):
-			rank = "Silver 2"
+			rank = "Silver"
 		elif (highestRank == 6):
-			rank = "Silver 3"
+			rank = "Silver"
 		elif (highestRank == 7):
-			rank = "Gold 1"
+			rank = "Gold"
 		elif (highestRank == 8):
-			rank = "Gold 2"
+			rank = "Gold"
 		elif (highestRank == 9):
-			rank = "Gold 3"
+			rank = "Gold"
 		elif (highestRank == 10):
-			rank = "Platinum 1"
+			rank = "Platinum"
 		elif (highestRank == 11):
-			rank = "Platinum 2"
+			rank = "Platinum"
 		elif (highestRank == 12):
-			rank = "Platinum 3"
+			rank = "Platinum"
 		elif (highestRank == 13):
-			rank = "Diamond 1"
+			rank = "Diamond"
 		elif (highestRank == 14):
-			rank = "Diamond 2"
+			rank = "Diamond"
 		elif (highestRank == 15):
-			rank = "Diamond 3"
+			rank = "Diamond"
 		elif (highestRank == 16):
-			rank = "Champion 1"
+			rank = "Champion"
 		elif (highestRank == 17):
-			rank = "Champion 2"
+			rank = "Champion"
 		elif (highestRank == 18):
-			rank = "Champion 3"
+			rank = "Champion"
 		elif (highestRank == 19):
 			rank = "Grand Champion"
 		else:
@@ -275,7 +275,7 @@ class steam:
 
 		await self.bot.add_roles(member, role)
 
-		return True
+		return rank
 
 	async def numToRank(self, highestRank):
 
