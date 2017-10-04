@@ -206,41 +206,41 @@ class steam:
 		if (highestRank == 0):
 			rank = "Unranked"
 		elif (highestRank == 1):
-			rank = "Bronze"
+			rank = "Bronze 1"
 		elif (highestRank == 2):
-			rank = "Bronze"
+			rank = "Bronze 2"
 		elif (highestRank == 3):
-			rank = "Bronze"
+			rank = "Bronze 3"
 		elif (highestRank == 4):
-			rank = "Silver"
+			rank = "Silver 1"
 		elif (highestRank == 5):
-			rank = "Silver"
+			rank = "Silver 2"
 		elif (highestRank == 6):
-			rank = "Silver"
+			rank = "Silver 3"
 		elif (highestRank == 7):
-			rank = "Gold"
+			rank = "Gold 1"
 		elif (highestRank == 8):
-			rank = "Gold"
+			rank = "Gold 2"
 		elif (highestRank == 9):
-			rank = "Gold"
+			rank = "Gold 3"
 		elif (highestRank == 10):
-			rank = "Platinum"
+			rank = "Platinum 1"
 		elif (highestRank == 11):
-			rank = "Platinum"
+			rank = "Platinum 2"
 		elif (highestRank == 12):
-			rank = "Platinum"
+			rank = "Platinum 3"
 		elif (highestRank == 13):
-			rank = "Diamond"
+			rank = "Diamond 1"
 		elif (highestRank == 14):
-			rank = "Diamond"
+			rank = "Diamond 2"
 		elif (highestRank == 15):
-			rank = "Diamond"
+			rank = "Diamond 3"
 		elif (highestRank == 16):
-			rank = "Champion"
+			rank = "Champion 1"
 		elif (highestRank == 17):
-			rank = "Champion"
+			rank = "Champion 2"
 		elif (highestRank == 18):
-			rank = "Champion"
+			rank = "Champion 3"
 		elif (highestRank == 19):
 			rank = "Grand Champion"
 		else:
