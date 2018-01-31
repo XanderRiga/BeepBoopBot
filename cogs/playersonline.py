@@ -45,15 +45,19 @@ class playersonline:
     #This will give player who calls the command the role for the specified game
     @commands.command(pass_context=True)
     async def role(self, ctx, game):
-        if game != "PUBG" and game != "Overwatch":
-            await self.bot.say("Currently the only games you can add roles for are \"Overwatch\" and \"PUBG\"")
+        game = game.lower()
+        if game != "br" and game != "overwatch":
+            await self.bot.say("Currently the only games you can add roles for are \"overwatch\" and \"br\"")
             return
 
         author = ctx.message.author
 
         # MUST SET SERVER ID BACK TO WCU AFTER: 174382936877957120
         server = discord.utils.find(lambda m: m.id == '174382936877957120', self.bot.servers)
-        role = discord.utils.find(lambda m: m.name == game, server.roles)
+        if game == "br":
+            role = discord.utils.find(lambda m: m.name == game.upper(), server.roles)
+        if game == "overwatch":
+            role = discord.utils.find(lambda m: m.name == game.capitalize(), server.roles)
 
         for x in author.roles:
             if(role == x):
