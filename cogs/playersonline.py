@@ -46,8 +46,8 @@ class playersonline:
     @commands.command(pass_context=True)
     async def role(self, ctx, game):
         game = game.lower()
-        if game != "br" and game != "overwatch":
-            await self.bot.say("Currently the only games you can add roles for are \"overwatch\" and \"br\"")
+        if game != "br" and game != "overwatch" and game != "gta":
+            await self.bot.say("Currently the only games you can add roles for are \"overwatch\", \"br\", and \"gta\"")
             return
 
         author = ctx.message.author
@@ -58,6 +58,8 @@ class playersonline:
             role = discord.utils.find(lambda m: m.name == game.upper(), server.roles)
         if game == "overwatch":
             role = discord.utils.find(lambda m: m.name == game.capitalize(), server.roles)
+        if game == "gta":
+            role = discord.utils.find(lambda m: m.name == game.upper(), server.roles)
 
         for x in author.roles:
             if(role == x):
