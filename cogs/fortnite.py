@@ -64,7 +64,7 @@ class Fortnite:
         winrate = data['br']['stats']['pc']['all']['winRate']
         kd = data['br']['stats']['pc']['all']['kpd']
 
-        return round(((winrate + kd) / 300), 2)
+        return round(((winrate + kd) * 10), 2)
 
 
 def setup(bot):
