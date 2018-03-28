@@ -23,19 +23,19 @@ class Fortnite:
         for discordid in self.data:
             response = requests.get('https://fortnite.y3n.co/v2/player/' + self.data[discordid], headers={'X-Key': self.apikey})
             data = response.json()
-            kd = data['br']['stats']['pc']['all']['kpd']
+            rating = self.getrating(data)
 
             for server in self.bot.servers:
                 member = discord.utils.find(lambda m: m.id == discordid, server.members)
                 if member:
-                    rankings[member.name] = kd
+                    rankings[member.name] = rating
                     break
 
 
         leaderboard = sorted(rankings.items(), key=operator.itemgetter(1))
         leaderboard.reverse()
 
-        printstr = 'Wiff City United Fortnite K/D Rankings\n'
+        printstr = 'Wiff City United Fortnite Ratings\n'
         for index, tuple in enumerate(leaderboard):
             printstr += (str(index + 1) + ' - ' + str(tuple[0]) + ': ').ljust(15) + str(tuple[1]).ljust(15) + '\n'
 
@@ -57,6 +57,15 @@ class Fortnite:
         self.data[discordID] = username
         dataIO.save_json("data/fortnite/players.json", self.data)
         await self.bot.say('Username ' + str(username) + ' successfully linked')
+
+
+    def getrating(self, data):
+        """This gives an adjusted rating of win rating * k/d normalized"""
+        winrate = data['br']['stats']['pc']['all']['winRate']
+        kd = data['br']['stats']['pc']['all']['kpd']
+
+        return round(((winrate * kd) / 300) * 100, 2)
+
 
 def setup(bot):
     bot.add_cog(Fortnite(bot))
