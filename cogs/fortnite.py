@@ -52,7 +52,7 @@ class Fortnite:
                 raise Exception
         except:
             await self.bot.say('This account doesn\'t seem to exist. Did you spell your username right?')
-            return()
+            return
 
         self.data[discordID] = username
         dataIO.save_json("data/fortnite/players.json", self.data)
@@ -64,7 +64,7 @@ class Fortnite:
         winrate = data['br']['stats']['pc']['all']['winRate']
         kd = data['br']['stats']['pc']['all']['kpd']
 
-        return round(((winrate * 5) + (kd * 2.5) / 300), 2)
+        return round(((winrate + kd) / 300), 2)
 
 
 def setup(bot):
