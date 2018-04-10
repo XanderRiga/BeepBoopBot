@@ -41,6 +41,42 @@ class Fortnite:
 
         await self.bot.say(printstr)
 
+    @commands.command()
+    async def fnranksdetail(self):
+        """This gives the rank leaderboard with more detail than regular fnranks"""
+        rankings = {}
+        winrates = {}
+        kds = {}
+        for discordid in self.data:
+            response = requests.get('https://fortnite.y3n.co/v2/player/' + self.data[discordid], headers={'X-Key': self.apikey})
+            data = response.json()
+            rating = self.getrating(data)
+            winrate = self.getwinrate(data)
+            kd = self.getkd(data)
+
+            for server in self.bot.servers:
+                member = discord.utils.find(lambda m: m.id == discordid, server.members)
+                if member:
+                    rankings[member.name] = rating
+                    winrates[member.name] = winrate
+                    kds[member.name] = kd
+                    break
+
+        leaderboard = sorted(rankings.items(), key=operator.itemgetter(1))
+        leaderboard.reverse()
+
+        printstr = 'Wiff City United Fortnite Ratings\n'
+        printstr += 'Sorted by Rank, Name, Rating, Winrate, and K/D\n'
+        for index, tuple in enumerate(leaderboard):
+            name = tuple[0]
+            rating = tuple[1]
+            wr = winrates[name]
+            kd = kds[name]
+            printstr += (str(index + 1) + ' - ' + str(name) + ': ').ljust(15) + str(rating).ljust(12) + str(wr).ljust(10) + str(kd).ljust(10) +'\n'
+
+        await self.bot.say(printstr)
+
+
     @commands.command(pass_context=True)
     async def linkfort(self, ctx, username):
         """Call this command with your username to link your discord account to your fortnite account in this server"""
@@ -65,6 +101,12 @@ class Fortnite:
         kd = data['br']['stats']['pc']['all']['kpd']
 
         return round(((winrate + kd) * 10), 2)
+
+    def getwinrate(self, data):
+        return data['br']['stats']['pc']['all']['winRate']
+
+    def getkd(self, data):
+        return data['br']['stats']['pc']['all']['kpd']
 
 
 def setup(bot):
