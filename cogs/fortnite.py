@@ -102,13 +102,23 @@ class Fortnite:
 
     def getrating(self, data):
         """This gives an adjusted rating of win rating * k/d normalized"""
-        winrate = data['br']['stats']['pc']['all']['winRate']
-        kd = data['br']['stats']['pc']['all']['kpd']
+        winrate = self.getwinrate(data)
+        kd = self.getkd(data)
+        wins = self.getwins(data)
 
-        return round(((winrate + kd) * 10), 2)
+        adjwinrate = (winrate / 100)
+        adjkd = (kd / 10) / 3
+
+        rating = (10000 * adjwinrate * adjkd) + wins
+
+        return round(rating, 2)
 
     def getwinrate(self, data):
         return round(data['br']['stats']['pc']['all']['winRate'], 2)
+
+    def getnumwins(self, data):
+        return data['br']['stats']['pc']['all']['wins']
+
 
     def getkd(self, data):
         return round(data['br']['stats']['pc']['all']['kpd'], 2)
