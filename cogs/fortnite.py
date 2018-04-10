@@ -106,7 +106,7 @@ class Fortnite:
         return data['br']['stats']['pc']['all']['winRate']
 
     def getkd(self, data):
-        return data['br']['stats']['pc']['all']['kpd']
+        return round(data['br']['stats']['pc']['all']['kpd'], 2)
 
 
 def setup(bot):
