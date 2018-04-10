@@ -22,7 +22,6 @@ class Fortnite:
         rankings = {}
         for discordid in self.data:
             response = requests.get('https://fortnite.y3n.co/v2/player/' + self.data[discordid], headers={'X-Key': self.apikey})
-            await self.bot.say('loading player...')
             data = response.json()
             rating = self.getrating(data)
 
