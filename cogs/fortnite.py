@@ -36,8 +36,18 @@ class Fortnite:
         leaderboard.reverse()
 
         printstr = 'Wiff City United Fortnite Ratings\n'
-        for index, tuple in enumerate(leaderboard):
-            printstr += (str(index + 1) + ' - ' + str(tuple[0]) + ': ').ljust(15) + str(tuple[1]).ljust(15) + '\n'
+        for i in range (1, len(leaderboard)+1):
+            printstr += str(i).ljust(12)
+
+        printstr += '\n'
+
+        for tuple in leaderboard:
+            printstr += (str(tuple[0])).ljust(12)
+
+        printstr += '\n'
+
+        for tuple in leaderboard:
+            printstr += (str(tuple[1])).ljust(12)
 
         await self.bot.say(printstr)
 
