@@ -103,7 +103,7 @@ class Fortnite:
         return round(((winrate + kd) * 10), 2)
 
     def getwinrate(self, data):
-        return data['br']['stats']['pc']['all']['winRate']
+        return round(data['br']['stats']['pc']['all']['winRate'], 2)
 
     def getkd(self, data):
         return round(data['br']['stats']['pc']['all']['kpd'], 2)
