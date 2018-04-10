@@ -35,10 +35,13 @@ class Fortnite:
         leaderboard = sorted(rankings.items(), key=operator.itemgetter(1))
         leaderboard.reverse()
 
-        printstr = 'Wiff City United Fortnite Ratings\n'
+        printstr = '```Wiff City United Fortnite Ratings\n\n'
+        printstr += 'Rank'.ljust(7) + 'Name'.ljust(15) + 'Rating'.ljust(15) + '\n'
+        printstr += '-----------------------------------\n'
         for index, tuple in enumerate(leaderboard):
-            printstr += (str(index + 1) + ' - ' + str(tuple[0]) + ': ').ljust(15) + str(tuple[1]).ljust(15) + '\n'
+            printstr += str(index + 1).ljust(7) + (str(tuple[0])).ljust(15) + str(tuple[1]).ljust(15) + '\n'
 
+        printstr += '```'
         await self.bot.say(printstr)
 
     @commands.command()
@@ -65,15 +68,17 @@ class Fortnite:
         leaderboard = sorted(rankings.items(), key=operator.itemgetter(1))
         leaderboard.reverse()
 
-        printstr = 'Wiff City United Fortnite Ratings\n'
-        printstr += 'Sorted by Rank, Name, Rating, Winrate, and K/D\n'
+        printstr = '```Wiff City United Detailed Fortnite Ratings\n\n'
+        printstr += 'Rank'.ljust(7) + 'Name'.ljust(15) + 'Rating'.ljust(12) + 'Winrate'.ljust(12) +'K/D'.ljust(12) + '\n'
+        printstr += '---------------------------------------------------\n'
         for index, tuple in enumerate(leaderboard):
             name = tuple[0]
             rating = tuple[1]
             wr = winrates[name]
             kd = kds[name]
-            printstr += (str(index + 1) + ' - ' + str(name) + ': ').ljust(15) + str(rating).ljust(12) + str(wr).ljust(10) + str(kd).ljust(10) +'\n'
+            printstr += str(index + 1).ljust(7) + str(name).ljust(15) + str(rating).ljust(12) + str(wr).ljust(12) + str(kd).ljust(12) +'\n'
 
+        printstr += '```'
         await self.bot.say(printstr)
 
 
