@@ -21,7 +21,10 @@ class Fortnite:
         """This command gives the leaderboard of all of the fortnite players on this server's stats"""
         rankings = {}
         for discordid in self.data:
-            response = requests.get('https://fortnite.y3n.co/v2/player/' + self.data[discordid], headers={'X-Key': self.apikey})
+            try:
+                response = requests.get('https://fortnite.y3n.co/v2/player/' + self.data[discordid], headers={'X-Key': self.apikey})
+            except:
+                continue
             data = response.json()
             rating = self.getrating(data)
 
@@ -51,7 +54,10 @@ class Fortnite:
         winrates = {}
         kds = {}
         for discordid in self.data:
-            response = requests.get('https://fortnite.y3n.co/v2/player/' + self.data[discordid], headers={'X-Key': self.apikey})
+            try:
+                response = requests.get('https://fortnite.y3n.co/v2/player/' + self.data[discordid], headers={'X-Key': self.apikey})
+            except:
+                continue
             data = response.json()
             rating = self.getrating(data)
             winrate = self.getwinrate(data)
