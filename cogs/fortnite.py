@@ -19,37 +19,9 @@ class Fortnite:
     @commands.command()
     async def fnranks(self):
         """This command gives the leaderboard of all of the fortnite players on this server's stats"""
-        rankings = {}
-        for discordid in self.data:
-            try:
-                response = requests.get('https://fortnite.y3n.co/v2/player/' + self.data[discordid], headers={'X-Key': self.apikey})
-            except:
-                continue
-            data = response.json()
-            rating = self.getrating(data)
-
-            for server in self.bot.servers:
-                member = discord.utils.find(lambda m: m.id == discordid, server.members)
-                if member:
-                    rankings[member.name] = rating
-                    break
-
-
-        leaderboard = sorted(rankings.items(), key=operator.itemgetter(1))
-        leaderboard.reverse()
-
-        printstr = '```Wiff City United Fortnite Ratings\n\n'
-        printstr += 'Rank'.ljust(7) + 'Name'.ljust(15) + 'Rating'.ljust(15) + '\n'
-        printstr += '-----------------------------------\n'
-        for index, tuple in enumerate(leaderboard):
-            printstr += str(index + 1).ljust(7) + (str(tuple[0])).ljust(15) + str(tuple[1]).ljust(15) + '\n'
-
-        printstr += '```'
-        await self.bot.say(printstr)
-
-    @commands.command()
-    async def fnranksdetail(self):
         """This gives the rank leaderboard with more detail than regular fnranks"""
+
+        self.data = dataIO.load_json("data/fortnite/players.json")
         rankings = {}
         winrates = {}
         kds = {}
@@ -86,6 +58,25 @@ class Fortnite:
 
         printstr += '```'
         await self.bot.say(printstr)
+
+
+    @commands.command(pass_context=True)
+    async def fnremove(self, ctx):
+        """This removes you from the fnranks leaderboard"""
+
+        self.data = dataIO.load_json("data/fortnite/players.json")
+        discordid = ctx.message.author.id
+        self.data.pop(discordid, None)
+
+        dataIO.save_json("data/fortnite/players.json", self.data)
+        await self.bot.say('Successfully removed you from the rankings. Use !linkfort to add your name back to the list.')
+
+
+
+    @commands.command()
+    async def fnranksdetail(self):
+        """This gives the rank leaderboard with more detail than regular fnranks"""
+        await self.bot.say('This command has been replaced with !fnranks. Run that command instead.')
 
 
     @commands.command(pass_context=True)
