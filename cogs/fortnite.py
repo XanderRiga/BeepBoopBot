@@ -25,15 +25,24 @@ class Fortnite:
         rankings = {}
         winrates = {}
         kds = {}
+        failed = 0
         for discordid in self.data:
             try:
                 response = requests.get('https://fortnite.y3n.co/v2/player/' + self.data[discordid], headers={'X-Key': self.apikey})
+                if response.status_code != 200:
+                    raise Exception
             except:
+                failed += 1
                 continue
-            data = response.json()
-            rating = self.getrating(data)
-            winrate = self.getwinrate(data)
-            kd = self.getkd(data)
+
+            try:
+                data = response.json()
+                rating = self.getrating(data)
+                winrate = self.getwinrate(data)
+                kd = self.getkd(data)
+            except:
+                failed += 1
+                continue
 
             for server in self.bot.servers:
                 member = discord.utils.find(lambda m: m.id == discordid, server.members)
@@ -42,6 +51,10 @@ class Fortnite:
                     winrates[member.name] = winrate
                     kds[member.name] = kd
                     break
+
+        if not rankings:
+            await self.bot.say('Uh oh! Looks like the API for player data might be down, try again later')
+            return
 
         leaderboard = sorted(rankings.items(), key=operator.itemgetter(1))
         leaderboard.reverse()
@@ -58,6 +71,8 @@ class Fortnite:
 
         printstr += '```'
         await self.bot.say(printstr)
+        if failed > 0:
+            await self.bot.say(str(failed) + ' players data could not be found. If your name is not on the list then you may have spelled it wrong, try using !fnlink to reset your name')
 
 
     @commands.command(pass_context=True)
@@ -80,7 +95,7 @@ class Fortnite:
 
 
     @commands.command(pass_context=True)
-    async def linkfort(self, ctx, username):
+    async def fnlink(self, ctx, username):
         """Call this command with your username to link your discord account to your fortnite account in this server"""
 
         discordID = ctx.message.author.id
